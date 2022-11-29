@@ -1,12 +1,12 @@
 #Car Racing Game
 #Inspired by Tech with Tim | https://www.youtube.com/watch?v=L3ktUWfAMPg
 #11/28/22
-#On Part 1 @25:10
+#On Part 1 @34:30
 
 import pygame
 import time
 import math
-from utils import scale_image
+from utils import scale_image,blit_rotate_center
 
 
 
@@ -33,6 +33,8 @@ class Abstract_Car:
         self.vel = 0
         self.rotation_vel = rotation_vel
         self.angle = 0
+        self.img = self.IMG
+        self.x, self.y = self.START_POS
     
     def rotate(self,left=False, right=False):
         if left:
@@ -40,24 +42,31 @@ class Abstract_Car:
         elif right:
             self.angle -= self.rotation_vel
 
-        
+    def draw(self,win):
+        blit_rotate_center(win,self.img,(self.x,self.y),self.angle)
 
-        
+class Player_Car(Abstract_Car):
+    IMG = RED_CAR
+    START_POS = (100,200)
 
-def draw(win,images):
+def draw(win,images,player_Car):
     for img,pos in images:
         win.blit(img,pos)
+
+    player_car.draw(win)
+    pygame.display.update()
 
 
 run = True
 clock = pygame.time.Clock()
 images = [(GRASS, (0,0)),(TRACK, (0,0))]
+player_car = Player_Car(4,4)#higher the number the faster
 
 while run:
     clock.tick(FPS)
 
-    draw(WIN,images)
-    pygame.display.update()
+    draw(WIN,images,player_car)
+    
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
