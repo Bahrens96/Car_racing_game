@@ -1,0 +1,6 @@
+rotation of angles
+
+0 = down
+90 = right
+180 = up
+270 = left
