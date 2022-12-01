@@ -1,7 +1,7 @@
 #Car Racing Game
 #Inspired by Tech with Tim | https://www.youtube.com/watch?v=L3ktUWfAMPg
 #11/28/22
-#On Part 1 @34:30
+#On Part 2 @0:00
 
 import pygame
 import time
